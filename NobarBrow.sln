@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NobarBrow", "NobarBrow\NobarBrow.csproj", "{069281C7-D352-48C2-8CAC-2F4FD12A766B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{069281C7-D352-48C2-8CAC-2F4FD12A766B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{069281C7-D352-48C2-8CAC-2F4FD12A766B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{069281C7-D352-48C2-8CAC-2F4FD12A766B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{069281C7-D352-48C2-8CAC-2F4FD12A766B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
