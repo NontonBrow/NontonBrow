@@ -42,6 +42,27 @@
         <WarningLevel>4</WarningLevel>
     </PropertyGroup>
     <ItemGroup>
+        <Reference Include="Browser.Blob, Version=1.1.4.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>..\packages\Fable.Browser.Blob.1.1.4\lib\netstandard2.0\Browser.Blob.dll</HintPath>
+        </Reference>
+        <Reference Include="Browser.Dom, Version=2.9.0.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>..\packages\Fable.Browser.Dom.2.9.0\lib\netstandard2.0\Browser.Dom.dll</HintPath>
+        </Reference>
+        <Reference Include="Browser.Event, Version=1.4.6.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>..\packages\Fable.Browser.Event.1.4.6\lib\netstandard2.0\Browser.Event.dll</HintPath>
+        </Reference>
+        <Reference Include="Browser.Gamepad, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>..\packages\Fable.Browser.Gamepad.1.0.3\lib\netstandard2.0\Browser.Gamepad.dll</HintPath>
+        </Reference>
+        <Reference Include="Browser.WebStorage, Version=1.0.4.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>..\packages\Fable.Browser.WebStorage.1.0.4\lib\netstandard2.0\Browser.WebStorage.dll</HintPath>
+        </Reference>
+        <Reference Include="Fable.Core, Version=3.6.1.0, Culture=neutral, processorArchitecture=MSIL">
+          <HintPath>..\packages\Fable.Core.3.6.1\lib\netstandard2.0\Fable.Core.dll</HintPath>
+        </Reference>
+        <Reference Include="FSharp.Core, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+          <HintPath>..\packages\FSharp.Core.6.0.2\lib\netstandard2.0\FSharp.Core.dll</HintPath>
+        </Reference>
         <Reference Include="Microsoft.CSharp" />
         <Reference Include="System" />
         <Reference Include="System.Data" />
@@ -116,10 +137,14 @@
         <Compile Include="App_Start\BundleConfig.cs" />
         <Compile Include="App_Start\FilterConfig.cs" />
         <Compile Include="App_Start\RouteConfig.cs" />
-        <Compile Include="Controllers\HomeController.cs" />
+        <Compile Include="Controllers\MovieController.cs" />
         <Compile Include="Global.asax.cs">
             <DependentUpon>Global.asax</DependentUpon>
         </Compile>
+        <Compile Include="Models\CastModel.cs" />
+        <Compile Include="Models\CrewModel.cs" />
+        <Compile Include="Models\DetailMovieModel.cs" />
+        <Compile Include="Models\MovieModel.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
     </ItemGroup>
     <ItemGroup>
@@ -159,6 +184,7 @@
         <Content Include="Global.asax" />
         <Content Include="Content\Site.css" />
         <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+        <Content Include="Images\NontonBrow.svg" />
         <Content Include="Scripts\bootstrap.bundle.js" />
         <Content Include="Scripts\bootstrap.bundle.js.map" />
         <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -181,6 +207,12 @@
         <Content Include="Scripts\jquery.validate.unobtrusive.js" />
         <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
         <Content Include="Scripts\modernizr-2.8.3.js" />
+        <Content Include="Scripts\popper.js" />
+        <Content Include="Views\Movie\Detail.cshtml" />
+        <Content Include="Views\Movie\Index.cshtml" />
+        <Content Include="Views\Movie\Search.cshtml" />
+        <Content Include="Views\Movie\InTheaters.cshtml" />
+        <Content Include="Views\Movie\Popular.cshtml" />
         <Content Include="Web.config" />
         <Content Include="Web.Debug.config">
             <DependentUpon>Web.config</DependentUpon>
@@ -192,13 +224,9 @@
         <Content Include="Views\_ViewStart.cshtml" />
         <Content Include="Views\Shared\Error.cshtml" />
         <Content Include="Views\Shared\_Layout.cshtml" />
-        <Content Include="Views\Home\About.cshtml" />
-        <Content Include="Views\Home\Contact.cshtml" />
-        <Content Include="Views\Home\Index.cshtml" />
     </ItemGroup>
     <ItemGroup>
         <Folder Include="App_Data" />
-        <Folder Include="Models" />
     </ItemGroup>
     <ItemGroup>
         <None Include="packages.config" />
