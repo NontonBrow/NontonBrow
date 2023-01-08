@@ -1,42 +1,50 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+  @Styles.Render("~/Content/css")
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+  @Scripts.Render("~/bundles/modernizr")
+  
+  <title>@ViewBag.Title</title>
 </head>
 <body>
-<div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            @Html.ActionLink("Application name", "Index", "Home", new {area = ""}, new {@class = "navbar-brand"})
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #3C4048;">
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <img src="~/Images/NontonBrow.svg" alt="Logo NontonBrow" style="max-height: 30px;">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav ms-auto" style="font-weight: 700;">
+            <a class="nav-link @(ViewBag.Title == "Home Page" ? "active" : "")" aria-current="page" href="@Url.Action("Index", "Movie")">HOME</a>
+            <a class="nav-link @(ViewBag.Title == "In Theaters" ? "active" : "")" href="@Url.Action("InTheaters", "Movie")">IN THEATERS</a>
+            <a class="nav-link @(ViewBag.Title == "Popular" ? "active" : "")" href="@Url.Action("Popular", "Movie")">POPULAR</a>
+            <a class="nav-link @(ViewBag.Title == "Search" ? "active" : "")" href="@Url.Action("Search", "Movie")">SEARCH</a>
+          </div>
         </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                <li>@Html.ActionLink("About", "About", "Home")</li>
-                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-            </ul>
-        </div>
-    </div>
-</div>
-<div class="container body-content">
+      </div>
+    </nav>
+  </header>
+  <main>
     @RenderBody()
-    <hr/>
-    <footer>
-        <p>&copy; @DateTime.Now.2023 - My ASP.NET Application</p>
-    </footer>
-</div>
+  </main>
+  <footer>
 
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/bootstrap")
-@RenderSection("scripts", required: false)
+  </footer>
+  
+  @Scripts.Render("~/bundles/jquery")
+  @Scripts.Render("~/bundles/popper")
+  @Scripts.Render("~/bundles/bootstrap")
+  @RenderSection("scripts", required: false)
 </body>
 </html>
