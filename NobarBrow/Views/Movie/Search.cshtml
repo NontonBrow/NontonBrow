@@ -1,0 +1,67 @@
+@{
+    ViewBag.Title = "Search";
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row mt-5 d-flex justify-content-center">
+        <div class="col-12 col-lg-8">
+            <h1 class="mb-3 text-center">Search</h1>
+            <form id="searchMovie">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="inputTitle" name="inputTitle" placeholder="Insert Title" aria-label="Insert Title" aria-describedby="btnSearchMovie" required>
+                    <button type="submit" class="input-group-text" id="btnSearchMovie" style="background-color: #00ABB3;">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row mt-5" id="hasilCari"></div>
+</div>
+
+@section Scripts {
+    <script>
+        $('#searchMovie').on("submit", function (e) {
+            e.preventDefault();
+            let title = $('#inputTitle').val();
+            console.log(title);
+            $.ajax({
+                method: 'GET',
+                url: "https://api.themoviedb.org/3/search/movie",
+                dataType: 'JSON',
+                data: {
+                    api_key: "97881e91dfb4b973f6da04e1777abc72",
+                    query: title,
+                },
+                success: function (response) {
+                    let container = $('#hasilCari');
+                    container.children().remove();
+                    if (response["results"].length > 0) {
+                    response["results"].forEach((movie) => {
+                        container.append(
+                            `<div class="col-4 col-lg-2 mt-2">
+                                <div class="card">
+                                  <img src="https://image.tmdb.org/t/p/original/${movie["poster_path"]}" class="card-img-top" alt="..." loading="lazy">
+                                  <div class="card-body" style="background-color: #3C4048; color: #EAEAEA;">
+                                    <h5 class="card-title" style="font-size: 18px; font-weight: 700;">
+                                      <i class="fa-solid fa-star" style="color: yellow;"></i>
+                                      ${movie["vote_average"]}
+                                    </h5>
+                                    <h5 class="card-title" style="font-size: 18px; font-weight: 700;">${movie["title"]}</h5>
+                                    <a href="@Url.Action("Detail", "Movie")/${movie['id']}" class="btn rounded-pill" style="background-color: #00ABB3; color: #EAEAEA; font-weight: 700;">Detail</a>
+                                  </div>
+                                </div>
+                            </div>`
+                        )
+                    })
+                    } else {
+                        container.append(`
+                            <h3 class="text-center">Data Tidak Ditemukan</h3>
+                        `);
+                    }
+                }
+            })
+        });
+    </script>
+}
