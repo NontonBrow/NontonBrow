@@ -1,0 +1,97 @@
+@model List<object>
+@{
+    ViewBag.Title = "Detail Movie";
+    Layout = "../Shared/_Layout.cshtml";
+
+  var movie = Model[0] as NobarBrow.Models.DetailMovieModel;
+  var casts = Model[1] as List<NobarBrow.Models.CastModel>;
+  var crews = Model[2] as List<NobarBrow.Models.CrewModel>;
+  var similarMovies = Model[3] as List<NobarBrow.Models.MovieModel>;
+}
+
+<div class="container-fluid">
+  <div class="row py-5 position-relative">
+    <div class="position-absolute top-0 w-100 h-100" style="background-image: url(@movie.BackdropPath); background-size: cover; background-position: center; background-repeat: no-repeat; filter: blur(15px); z-index: -2;"></div>
+    <div class="position-absolute top-0 w-100 h-100" style="background-color: rgba(0,0,0,0.5); z-index: -1;"></div>
+    <div class="col-lg-4 d-flex justify-content-center align-items-center">
+      <img src="@movie.PosterPath" alt="" class="rounded-3 mx-auto" style="width: 80%" loading="lazy">
+    </div>
+    <div class="col-lg-8">
+      <div class="container h-100 d-flex flex-column justify-content-center text-white">
+        <h1 class="my-2">@movie.Title</h1>
+        <div class="my-2 d-flex flex-row">
+          <p>@movie.ReleaseDate</p>
+          <div class="mx-2">
+            @foreach (var genre in movie.Genres)
+            {
+              <span class="badge rounded-pill bg-secondary">@genre</span>
+            }
+          </div>
+          <p class="text-white">@movie.Duration minutes</p>
+        </div>
+        <h3 class="my-2">
+          <i class="fa-solid fa-star" style="color: yellow;"></i>@movie.Rating
+        </h3>
+        <div class="my-2">
+          <h5>Overview</h5>
+          <p>@movie.Overview</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-lg-8">
+        <h3 class="text-center">Credits</h3>
+        <div class="container-fluid overflow-scroll mt-3">
+          <div class="row d-flex flex-row flex-nowrap">
+            @foreach (var crew in crews)
+            {
+              <div class="col-3 col-lg-2">
+                <div class="card">
+                  <img src="@crew.ProfilePath" class="card-img-top" alt="Image @crew.Name" loading="lazy">
+                  <div class="card-body">
+                    <h5 class="card-title" style="font-size: 16px; font-weight: 700;">@crew.Name</h5>
+                    <p style="font-size: 12px;">@crew.Job</p>
+                  </div>
+                </div>
+              </div>
+            }
+            @foreach (var cast in casts)
+            {
+              <div class="col-3 col-lg-2">
+                <div class="card">
+                  <img src="@cast.ProfilePath" class="card-img-top" alt="Image @cast.Name" loading="lazy">
+                  <div class="card-body">
+                    <h5 class="card-title" style="font-size: 16px; font-weight: 700;">@cast.Name</h5>
+                    <p style="font-size: 12px;">as @cast.Character</p>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-1"></div>
+      <div class="col-lg-3">
+        <h3 class="text-center mb-3">Similar Movie</h3>
+        @foreach (var similarMovie in similarMovies)
+        {
+          <div class="card w-100 mb-1">
+            <a href="@Url.Action("Detail", "Movie", new {Id = @similarMovie.Id})" class="text-decoration-none">
+              <div class="row g-0 ">
+                <div class="col-lg-2">
+                  <img src="@similarMovie.PosterPath" class="img-fluid rounded-start w-100" alt="Poster Film @similarMovie.Title" loading="lazy">
+                </div>
+                <div class="col-lg-10 h-100 my-auto">
+                  <p class="card-title my-auto" style="font-weight: 700;">@similarMovie.Title</p>
+                </div>
+              </div>
+            </a>
+          </div>
+        } 
+      </div>
+    </div>
+  </div>
+</div>
+

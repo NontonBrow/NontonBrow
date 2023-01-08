@@ -1,0 +1,38 @@
+@{
+    ViewBag.Title = "Popular";
+    Layout = "../Shared/_Layout.cshtml";
+    var popularMovies = Model as List<NobarBrow.Models.MovieModel>;
+}
+
+<div class="container">
+    <div class="row mt-5 d-flex justify-content-center">
+        <div class="col-12 col-lg-8">
+            <h1 class="mb-3 text-center">Popular Movies</h1>
+        </div>
+    </div>
+    <div class="row mt-5">
+        @if (Model == null)
+        {
+          <p>Data tidak tersedia</p>
+        }
+        else
+        {
+          foreach (var popularMovie in popularMovies)
+          {
+            <div class="col-4 col-lg-2 mt-2">
+              <div class="card">
+                <img src="@popularMovie.PosterPath" class="card-img-top" alt="..." loading="lazy">
+                <div class="card-body" style="background-color: #3C4048; color: #EAEAEA;">
+                  <h5 class="card-title" style="font-size: 18px; font-weight: 700;">
+                    <i class="fa-solid fa-star" style="color: yellow;"></i>
+                    @popularMovie.Rating
+                  </h5>
+                  <h5 class="card-title" style="font-size: 18px; font-weight: 700;">@popularMovie.Title</h5>
+                  <a href="@Url.Action("Detail", "Movie", new { id = @popularMovie.Id })" class="btn rounded-pill" style="background-color: #00ABB3; color: #EAEAEA; font-weight: 700;">Detail</a>
+                </div>
+              </div>
+            </div>
+          }
+        }
+    </div>
+</div>

@@ -1,0 +1,85 @@
+﻿@model List<object>
+
+@{
+  ViewBag.Title = "Home Page";
+  
+  var nowPlayingMovies = Model[0] as List<NobarBrow.Models.MovieModel>;
+  var trendingMovies = Model[1] as List<NobarBrow.Models.MovieModel>;
+
+}
+
+  <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" style="height: calc(100vh - 58px); color: #EAEAEA; overflow-y: hidden;">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="https://image.tmdb.org/t/p/original/o0s4XsEDfDlvit5pDRKjzXR4pp2.jpg" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="https://image.tmdb.org/t/p/original/maxRhndtC4BJABvqRPvYNu69CHA.jpg" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="https://image.tmdb.org/t/p/original/mSyQoValhBsJdq3JNGXJww2Q5yL.jpg" class="d-block w-100" alt="...">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+  </div>
+  <div class="container">
+    <div class="row mt-5">
+      <h2 style="font-size: 40px; font-weight: 700;">Trending Brow</h2>
+      @if (trendingMovies == null)
+      {
+        <p>Data tidak tersedia</p>
+      }
+      else
+      {
+        foreach (var trendingMovie in trendingMovies)
+        {
+        <div class="col-4 col-lg-2 mt-2">
+          <div class="card">
+            <img src="@trendingMovie.PosterPath" class="card-img-top" alt="Poster Film @trendingMovie.Title" loading="lazy">
+            <div class="card-body" style="background-color: #3C4048; color: #EAEAEA;">
+              <h5 class="card-title" style="font-size: 18px; font-weight: 700;">
+                <i class="fa-solid fa-star" style="color: yellow;"></i>
+                @trendingMovie.Rating
+              </h5>
+              <h5 class="card-title" style="font-size: 18px; font-weight: 700;">@trendingMovie.Title</h5>
+              <a href="@Url.Action("Detail", "Movie", new { id = @trendingMovie.Id })" class="btn rounded-pill" style="background-color: #00ABB3; color: #EAEAEA; font-weight: 700;">Detail</a>
+            </div>
+          </div>
+        </div>
+        }
+      }
+    </div>
+    <div class="row mt-5">
+      <h2 style="font-size: 40px; font-weight: 700;">What to Watch</h2>
+      @if (Model == null)
+      {
+        <p>Data tidak tersedia</p>
+      }
+      else
+      {
+          foreach (var nowPlayingMovie in nowPlayingMovies)
+          {
+            <div class="col-4 col-lg-2 mt-2">
+              <div class="card">
+                <img src="@nowPlayingMovie.PosterPath" class="card-img-top" alt="Poster Film @nowPlayingMovie.Title" loading="lazy">
+                <div class="card-body" style="background-color: #3C4048; color: #EAEAEA;">
+                  <h5 class="card-title" style="font-size: 18px; font-weight: 700;">
+                    <i class="fa-solid fa-star" style="color: yellow;"></i>
+                    @nowPlayingMovie.Rating
+                  </h5>
+                  <h5 class="card-title" style="font-size: 18px; font-weight: 700;">@nowPlayingMovie.Title</h5>
+                  <a href="@Url.Action("Detail", "Movie", new { id = @nowPlayingMovie.Id })" class="btn rounded-pill" style="background-color: #00ABB3; color: #EAEAEA; font-weight: 700;">Detail</a>
+                </div>
+              </div>
+            </div>
+          }
+      }
+    </div>
+  </div>
